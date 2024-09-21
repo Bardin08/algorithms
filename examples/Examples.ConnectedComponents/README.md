@@ -23,11 +23,11 @@ The problem is to identify all such connected components in the graph.
 Consider the following undirected graph:
 
 ```mermaid
-graph TD;
-    A -- B;
-    A -- C;
-    D -- E;
-    E -- F;
+flowchart TD
+    A <--> B;
+    A <--> C;
+    D <--> E;
+    E <--> F;
     G;
 ```
 
@@ -75,11 +75,11 @@ unvisited vertex is encountered.
 Let’s consider an example graph and show how DFS identifies the connected components:
 
 ```mermaid
-graph TD;
-    A -- B;
-    A -- C;
-    D -- E;
-    E -- F;
+flowchart TD
+    A <--> B;
+    A <--> C;
+    D <--> E;
+    E <--> F;
     G;
 ```
 
