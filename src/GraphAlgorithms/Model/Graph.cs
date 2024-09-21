@@ -1,6 +1,6 @@
 namespace GraphAlgorithms.Model;
 
-public class Graph<T>(bool isDirected = false) where T : notnull
+internal class Graph<T>(bool isDirected = false) where T : notnull
 {
     private readonly Dictionary<T, List<Edge<T>>> _adjacencyList = new();
 

@@ -2,7 +2,7 @@ using GraphAlgorithms.Model;
 
 namespace GraphAlgorithms.Helpers;
 
-public static class GraphHelper
+internal static class GraphHelper
 {
     public static void PrintGraph<T>(this Graph<T> graph) where T : notnull
     {
