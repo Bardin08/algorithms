@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using GraphAlgorithms.Helpers;
 using GraphAlgorithms.Model;
+using GraphAlgorithms.Traversals;
+using GraphAlgorithms.Traversals.Dfs;
 
 namespace GraphAlgorithms;
 
@@ -28,5 +30,16 @@ internal static partial class Program
 
         // Print the graph
         graph.PrintGraph();
+        
+        // Create a DFS traversal strategy
+        var dfsStrategy = new DepthFirstSearchIterative<int>();
+
+        // Create the traversal runner with DFS strategy
+        var traversalRunner = new GraphTraversalRunner<int>(dfsStrategy);
+        traversalRunner.ExecuteTraversal(graph, 1, async v =>
+        {
+            Console.WriteLine(v);
+            await Task.CompletedTask;
+        });
     }
 }
