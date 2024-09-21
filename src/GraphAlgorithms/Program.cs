@@ -1,3 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Diagnostics.CodeAnalysis;
 
-Console.WriteLine("Hello, World!");
+namespace GraphAlgorithms;
+
+[ExcludeFromCodeCoverage]
+internal static partial class Program
+{
+    public static async Task Main(string[] args)
+    {
+        await Task.CompletedTask;
+
+        Console.WriteLine("Hello World!");
+    }
+}
