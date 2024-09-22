@@ -3,7 +3,7 @@ using GraphAlgorithms.Model;
 namespace GraphAlgorithms.Traversals.Dfs;
 
 internal class DepthFirstSearchIterative<T>
-    : DepthFirstSearchBase<T>, IGraphTraversal<T> where T : notnull
+    : GraphTraversalBase<T>, IGraphTraversal<T> where T : notnull
 {
     public async Task Traverse(Graph<T> graph, T startVertex, Func<T, Task>? onVisit = null)
     {
