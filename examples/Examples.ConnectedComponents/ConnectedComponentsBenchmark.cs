@@ -12,11 +12,14 @@ using System.Threading.Tasks;
 public class ConnectedComponentsBenchmark
 {
     private Graph<int> _graph = null!;
-    private ConnectedComponentsFinder<int> _dfsRecursive = null!;
-    private ConnectedComponentsFinder<int> _dfsIterative = null!;
-    private ConnectedComponentsFinder<int> _bfsRecursive = null!;
-    private ConnectedComponentsFinder<int> _bfsIterative = null!;
-
+    private ConnectedComponentsFinder _connectedComponentsFinder = null!;
+    
+    private DepthFirstSearchRecursive<int> _dfsRecursive = null!;
+    private DepthFirstSearchIterative<int> _dfsIterative = null!;
+    private BreadthFirstSearchIterative<int> _bfsIterative = null!;
+    private BreadthFirstSearchRecursive<int> _bfsRecursive = null!;
+    
+    
     [GlobalSetup]
     public void Setup()
     {
@@ -29,32 +32,27 @@ public class ConnectedComponentsBenchmark
 
         _graph = graphGenerator.Generate(i => i);
 
-        var dfsRecursive = new DepthFirstSearchRecursive<int>();
-        _dfsRecursive = new ConnectedComponentsFinder<int>(_graph, dfsRecursive);
+        _connectedComponentsFinder = new ConnectedComponentsFinder();
 
-        var dfsIterative = new DepthFirstSearchIterative<int>();
-        _dfsIterative = new ConnectedComponentsFinder<int>(_graph, dfsIterative);
-
-        var bfsRecursive = new BreadthFirstSearchRecursive<int>();
-        _bfsRecursive = new ConnectedComponentsFinder<int>(_graph, bfsRecursive);
-
-        var bfsIterative = new BreadthFirstSearchIterative<int>();
-        _bfsIterative = new ConnectedComponentsFinder<int>(_graph, bfsIterative);
+        _dfsRecursive = new DepthFirstSearchRecursive<int>();
+        _dfsIterative = new DepthFirstSearchIterative<int>();
+        _bfsRecursive = new BreadthFirstSearchRecursive<int>();
+        _bfsIterative = new BreadthFirstSearchIterative<int>();
     }
-
-    // [Benchmark]
-    // public async Task FindComponentsWithRecursiveDFS()
-    //     => await _dfsRecursive.FindConnectedComponents();
-    //
-    // [Benchmark]
-    // public async Task FindComponentsWithIterativeDFS()
-    //     => await _dfsIterative.FindConnectedComponents();
+    
+    [Benchmark]
+    public async Task FindComponentsWithRecursiveDFS()
+        => await _connectedComponentsFinder.FindConnectedComponents(_graph, _dfsRecursive);
 
     [Benchmark]
+    public async Task FindComponentsWithIterativeDFS()
+        => await _connectedComponentsFinder.FindConnectedComponents(_graph, _dfsIterative);
+    
+    [Benchmark]
     public async Task FindComponentsWithRecursiveBFS()
-        => await _bfsRecursive.FindConnectedComponents();
+        => await _connectedComponentsFinder.FindConnectedComponents(_graph, _bfsRecursive);
 
     [Benchmark]
     public async Task FindComponentsWithIterativeBFS()
-        => await _bfsIterative.FindConnectedComponents();
+        => await _connectedComponentsFinder.FindConnectedComponents(_graph, _bfsIterative);
 }
