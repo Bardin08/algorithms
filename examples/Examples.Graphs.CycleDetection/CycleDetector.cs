@@ -8,7 +8,29 @@ namespace Examples.Graphs.CycleDetection;
         private Dictionary<T, int> _color = null!;  // 0: White, 1: Gray, 2: Black
         private Dictionary<T, T?> _parent = null!;  // Tracks parent for cycle reconstruction
         private List<List<T>> _cycles = null!;      // List of cycles
+        private bool _cycleFound = false;
+        private bool _earlyExit = false;
 
+        public bool HasCycle(Graph<T> graph)
+        {
+            SetInitialState(graph);
+            _earlyExit = true;
+
+            // Traverse the graph, stopping as soon as a cycle is detected
+            foreach (var vertex in _graph.AdjacencyList.Keys)
+            {
+                if (_color[vertex] == 0 && !_cycleFound)
+                {
+                    DetectCyclesInternal(vertex, default);
+                }
+
+                if (_cycleFound)
+                    break;
+            }
+
+            return _cycleFound;
+        }
+        
         public List<List<T>> FindAllCycles(Graph<T> graph)
         {
             SetInitialState(graph);
@@ -20,6 +42,7 @@ namespace Examples.Graphs.CycleDetection;
                     DetectCyclesInternal(vertex, default);
                 }
             }
+
             return _cycles;
         }
 
@@ -40,11 +63,16 @@ namespace Examples.Graphs.CycleDetection;
                 if (_color[neighbor] == 1)  // Back edge: cycle detected
                 {
                     TrackCycle(vertex, neighbor);
+
+                    _cycleFound = true;
+                    if (_cycleFound && _earlyExit) return;
                 }
                 else if (_color[neighbor] == 0)  // White: continue DFS
                 {
                     _parent[neighbor] = vertex;
                     DetectCyclesInternal(neighbor, vertex);
+
+                    if (_cycleFound && _earlyExit) return;
                 }
             }
 
@@ -74,6 +102,7 @@ namespace Examples.Graphs.CycleDetection;
             _color = new Dictionary<T, int>();
             _parent = new Dictionary<T, T?>();
             _cycles = new List<List<T>>();
+            _cycleFound = false;
             
             // Initialize all vertices as White (unvisited)
             foreach (var vertex in _graph.AdjacencyList.Keys)

@@ -15,6 +15,8 @@ graph.AddEdge(6, 9);
 graph.AddEdge(9, 0);  // Forms a cycle
 
 var cycleDetector = new CycleDetector<int>();
+Console.WriteLine("Graph contains cycle: " + cycleDetector.HasCycle(graph));
+
 var cycles = cycleDetector.FindAllCycles(graph);
 
 foreach (var cycle in cycles)
