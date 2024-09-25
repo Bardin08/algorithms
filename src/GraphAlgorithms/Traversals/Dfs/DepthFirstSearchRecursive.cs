@@ -5,10 +5,10 @@ namespace GraphAlgorithms.Traversals.Dfs;
 internal class DepthFirstSearchRecursive<T>
     : GraphTraversalBase<T>, IGraphTraversal<T> where T : notnull
 {
-    public async Task Traverse(Graph<T> graph, T vertex, Func<T, Task>? onVisit = null)
+    public async Task Traverse(Graph<T> graph, T startVertex, Func<T, Task>? onVisit = null)
     {
         Visited.Clear();
-        await DFS(graph, vertex, onVisit);
+        await DFS(graph, startVertex, onVisit);
     }
 
     private async Task DFS(Graph<T> graph, T vertex, Func<T, Task>? onVisit)
