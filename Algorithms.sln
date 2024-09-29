@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples.ConnectedComponents", "examples\Examples.ConnectedComponents\Examples.ConnectedComponents.csproj", "{FA5A6D53-58B9-4B45-A1D2-42F33512364F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples.Graphs.CycleDetection", "examples\Examples.Graphs.CycleDetection\Examples.Graphs.CycleDetection.csproj", "{B64EC518-608F-483A-9DDA-BE2DBE0BD786}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,7 @@ Global
 		{9E3B569F-A35B-46E0-84A2-A1F35A662FB5} = {61A37852-F4F2-435C-A953-BBB895A83C6F}
 		{729F7A65-1AFF-4069-A50A-4FF17F4F017B} = {29FEB65D-FB35-4CF9-AD5C-897AFB18730E}
 		{FA5A6D53-58B9-4B45-A1D2-42F33512364F} = {9D73AFE8-5FBF-4D87-9D60-EF9B18727501}
+		{B64EC518-608F-483A-9DDA-BE2DBE0BD786} = {9D73AFE8-5FBF-4D87-9D60-EF9B18727501}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B0E0BEDD-893F-47B0-80D5-48BAE277CC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -50,5 +53,9 @@ Global
 		{FA5A6D53-58B9-4B45-A1D2-42F33512364F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA5A6D53-58B9-4B45-A1D2-42F33512364F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA5A6D53-58B9-4B45-A1D2-42F33512364F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B64EC518-608F-483A-9DDA-BE2DBE0BD786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B64EC518-608F-483A-9DDA-BE2DBE0BD786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B64EC518-608F-483A-9DDA-BE2DBE0BD786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B64EC518-608F-483A-9DDA-BE2DBE0BD786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
