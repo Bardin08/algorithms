@@ -39,8 +39,14 @@ internal static class Program
         
         // Dijkstra Example
         var dijkstra = new DijkstraPathFinder<int>(useEarlyExit: true);
-        var path = dijkstra.GetShortestPath(graph, 1, 4);
+        var path1 = dijkstra.GetShortestPath(graph, 1, 4);
 
-        Console.WriteLine(string.Join(" --> ", path));
+        Console.WriteLine(string.Join(" --> ", path1));
+
+        // Bellman-Ford Example
+        var bellmanFord = new BellmanFord<int>();
+        var path2 = bellmanFord.GetShortestPath(graph, 1, 4);
+
+        Console.WriteLine(string.Join(" --> ", path2));
     }
 }
