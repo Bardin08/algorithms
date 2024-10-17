@@ -2,6 +2,8 @@
 using GraphAlgorithms.Analysis.ShortestPaths;
 using GraphAlgorithms.Helpers;
 using GraphAlgorithms.Model;
+using GraphAlgorithms.MST.Kruskal;
+using GraphAlgorithms.MST.Prim;
 using GraphAlgorithms.Traversals;
 using GraphAlgorithms.Traversals.Dfs;
 
@@ -24,7 +26,7 @@ internal static class Program
         graph.AddEdge(1, 2, 4.5);
         graph.AddEdge(1, 3, 2.0);
         graph.AddEdge(3, 4, 1.5);
-        graph.AddEdge(2, 4, 3.0);
+        graph.AddEdge(2, 4, -3.0);
 
         graph.PrintGraph();
 
@@ -46,7 +48,39 @@ internal static class Program
         // Bellman-Ford Example
         var bellmanFord = new BellmanFord<int>();
         var path2 = bellmanFord.GetShortestPath(graph, 1, 4);
+        
+        Console.WriteLine(string.Join(" --> ", path2)); 
 
-        Console.WriteLine(string.Join(" --> ", path2));
+        var kruskalGraph = new Graph<string>(isDirected: false);
+        
+        kruskalGraph.AddVertex("A");
+        kruskalGraph.AddVertex("B");
+        kruskalGraph.AddVertex("C");
+        kruskalGraph.AddVertex("D");
+        kruskalGraph.AddVertex("E");
+        
+        kruskalGraph.AddEdge("A", "B", 10);
+        kruskalGraph.AddEdge("A", "C", 20);
+        kruskalGraph.AddEdge("B", "C", 30);
+        kruskalGraph.AddEdge("B", "D", 50);
+        kruskalGraph.AddEdge("C", "D", 40);
+        kruskalGraph.AddEdge("C", "E", 60);
+        kruskalGraph.AddEdge("D", "E", 70);
+        
+        var kruskalMST = new KruskalMST<string>(kruskalGraph);
+        var mstEdgesKruskal = kruskalMST.FindMST();
+        Console.WriteLine($"Min length of Kruskal MST: {mstEdgesKruskal.Sum(x => x.Weight)}");
+        foreach (var edge in mstEdgesKruskal)
+        {
+            Console.WriteLine($"{edge.Source} -> {edge.Destination} (Weight: {edge.Weight})");
+        }
+        
+        var primMST = new PrimMST<string>(kruskalGraph);
+        var mstEdges = primMST.FindMST("A");
+        Console.WriteLine("Prim's MST:");
+        foreach (var edge in mstEdges)
+        {
+            Console.WriteLine($"{edge.Source} -> {edge.Destination} (Weight: {edge.Weight})");
+        }
     }
 }

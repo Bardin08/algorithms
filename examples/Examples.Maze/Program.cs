@@ -7,7 +7,7 @@ var maze = new MazeGenerator(new MapGeneratorOptions())
     .GenerateMaze();
 
 var startPoint = new Point(0, 0);
-var endPoint = new Point(81, 3);
+var endPoint = new Point(81, 9);
 
 var pathFinder = new DijkstraPathFinder(earlyExit: true);
 var path = pathFinder.FindPath(maze, startPoint, endPoint);
