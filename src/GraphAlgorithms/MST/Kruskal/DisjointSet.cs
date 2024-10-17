@@ -1,4 +1,4 @@
-namespace GraphAlgorithms.MST;
+namespace GraphAlgorithms.MST.Kruskal;
 
 public class DisjointSet<T> where T : notnull
 {

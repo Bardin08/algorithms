@@ -1,6 +1,6 @@
 using GraphAlgorithms.Model;
 
-namespace GraphAlgorithms.MST;
+namespace GraphAlgorithms.MST.Kruskal;
 
 internal class KruskalMST<T>(Graph<T> graph)
     where T : notnull
