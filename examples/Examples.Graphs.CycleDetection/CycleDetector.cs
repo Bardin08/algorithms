@@ -65,14 +65,14 @@ internal class CycleDetector<T> where T : notnull
                 TrackCycle(vertex, neighbor);
 
                 _cycleFound = true;
-                if (_cycleFound && _earlyExit) return;
+                // if (_cycleFound && _earlyExit) return;
             }
             else if (_color[neighbor] == 0) // White: continue DFS
             {
                 _parent[neighbor] = vertex;
                 DetectCyclesInternal(neighbor, vertex);
 
-                if (_cycleFound && _earlyExit) return;
+                // if (_cycleFound && _earlyExit) return;
             }
         }
 
