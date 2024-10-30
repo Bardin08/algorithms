@@ -1,6 +1,6 @@
 namespace GraphAlgorithms.Tests;
 
-public class UnitTest1
+public class DummyTestClass
 {
     [Fact]
     public void DummyTest()
